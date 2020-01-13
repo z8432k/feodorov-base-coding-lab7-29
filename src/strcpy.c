@@ -1,19 +1,9 @@
-#include <stdlib.h>
 #include <stdio.h>
-#include <stddef.h>
+#include "lib.h"
 
 #define START_BUF_LEN 3
 
-typedef char* String;
-typedef struct {
-  String buf;
-  size_t size;
-} String_t;
-
-size_t _strlen(String s);
 void _strdup(String_t *dst, String_t *src, size_t n);
-void allocString(String_t *s);
-void reallocString(String_t *s);
 void inputString(String_t *s);
 
 int main(void) {
@@ -46,14 +36,7 @@ int main(void) {
   exit(EXIT_SUCCESS);
 }
 
-size_t _strlen(String s) {
-  size_t i = 0;
-  for (; s[i]; i++);
-
-  return i++;
-}
-
-void allocString(String_t *s) {
+void _allocString(String_t *s) {
   s->buf = (String) malloc(START_BUF_LEN * sizeof(char));
   s->buf[0] = '\0';
   s->size = START_BUF_LEN;

@@ -5,7 +5,10 @@ LDLIBS =
 
 default: bin/$(PROGRAM)
 
-bin/$(PROGRAM): bin/$(PROGRAM).o
+bin/lib.o: src/lib.s
+	$(CC) $(CFLAGS) -o $@ -c $<
+
+bin/$(PROGRAM): bin/$(PROGRAM).o bin/lib.o
 	$(CC) $^ $(LDLIBS) -o $@
 
 bin/$(PROGRAM).o: src/$(PROGRAM).c
