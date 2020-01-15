@@ -1,4 +1,4 @@
-  .globl _strlen, allocString
+  .globl _strlen
 
   .data
 
@@ -15,20 +15,10 @@ START_BUF_LEN: .quad 3
 _strlen:
   mov %rdi, %rsi
   mov $-1, %rcx
+  xor %rax, %rax
   repne scasb
   not %rcx
   dec %rcx
   mov %rcx, %rax
   ret
 
-allocString:
-  push %rdi
-  mov $1, %rax
-  mov $3, %rcx
-  imul %rax, %rcx
-  mov %rax, %rdi
-  call malloc
-  mov %rax, %rbx
-  movq $0, (%rbx)
-  mov %rax, %rdi
-  ret

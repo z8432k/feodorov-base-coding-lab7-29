@@ -36,7 +36,7 @@ int main(void) {
   exit(EXIT_SUCCESS);
 }
 
-void _allocString(String_t *s) {
+void allocString(String_t *s) {
   s->buf = (String) malloc(START_BUF_LEN * sizeof(char));
   s->buf[0] = '\0';
   s->size = START_BUF_LEN;
