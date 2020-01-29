@@ -1,4 +1,4 @@
-  .globl _strlen, _allocString, _reallocString
+  .globl _strlen, allocString, reallocString
 
   .data
 
@@ -22,7 +22,7 @@ _strlen:
   mov %rcx, %rax
   ret
 
-_allocString:
+allocString:
   mov %rdi, %rbx
   mov $4, %rdi
   call malloc
@@ -33,7 +33,7 @@ _allocString:
   nop
   ret
 
-_reallocString:
+reallocString:
   mov %rdi, %rbx
   mov 8(%rbx), %rax
   mov $2, %rcx
@@ -41,7 +41,9 @@ _reallocString:
   inc %rax
   mov (%rbx), %rdi
   mov %rax, %rsi
+  push %rsi
   call realloc
   mov %rax, (%rbx)
+  pop %rsi
   movq %rsi, 8(%rbx)
   ret

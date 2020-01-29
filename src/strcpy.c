@@ -5,8 +5,8 @@
 
 void _strdup(String_t *dst, String_t *src, size_t n);
 void inputString(String_t *s);
-void _allocString(String_t *s);
-void _reallocString(String_t *s);
+void allocString(String_t *s);
+void reallocString(String_t *s);
 
 int main(void) {
   printf("= Copy FIRST string to SECOND string N times. =\n");
@@ -16,8 +16,8 @@ int main(void) {
   size_t count;
   String_t src;
   String_t dst;
-  _allocString(&src);
-  _allocString(&dst);
+  allocString(&src);
+  allocString(&dst);
 
   printf("Input FIRST string: ");
   inputString(&src);
@@ -36,18 +36,6 @@ int main(void) {
   free(dst.buf);
 
   exit(EXIT_SUCCESS);
-}
-
-void allocString(String_t *s) {
-  s->buf = (String) malloc(START_BUF_LEN * sizeof(char));
-  s->buf[0] = '\0';
-  s->size = START_BUF_LEN;
-}
-
-void reallocString(String_t *s) {
-  size_t newSize = s->size * 2;
-  s->buf = realloc(s->buf, newSize + 1);
-  s->size = newSize;
 }
 
 void inputString(String_t *s) {
