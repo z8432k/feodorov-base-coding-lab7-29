@@ -1,6 +1,5 @@
-CC = gcc-9
 PROGRAM = strcpy
-CFLAGS = -Wall -Wextra -Wpedantic -ggdb -std=c11 -O0
+CFLAGS = -Wall -Wextra -Wpedantic -ggdb -std=gnu11 -O0
 LDLIBS =
 
 default: bin/$(PROGRAM)

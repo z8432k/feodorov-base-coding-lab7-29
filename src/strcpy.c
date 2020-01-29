@@ -5,6 +5,7 @@
 
 void _strdup(String_t *dst, String_t *src, size_t n);
 void inputString(String_t *s);
+void _inputString(String_t *s);
 void allocString(String_t *s);
 void reallocString(String_t *s);
 
@@ -20,7 +21,7 @@ int main(void) {
   allocString(&dst);
 
   printf("Input FIRST string: ");
-  inputString(&src);
+  _inputString(&src);
 
   printf("Input SECOND string: ");
   inputString(&dst);

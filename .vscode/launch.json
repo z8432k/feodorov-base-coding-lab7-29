@@ -20,10 +20,10 @@
       "externalConsole": false,
       "MIMode": "gdb",
       // "additionalSOLibSearchPath": "/usr/lib/debug/**",
-      "sourceFileMap": {
+      // "sourceFileMap": {
         // "/build/gsl-MlxlPo/gsl-2.1+dfsg": "${workspaceFolder}/tmp/gsl-2.1+dfsg",
         // "/build/glibc-LK5gWL/glibc-2.23": "${workspaceFolder}/tmp/glibc-2.23"
-      },
+      // },
       "setupCommands": [
         {
           "description": "Enable pretty-printing for gdb",

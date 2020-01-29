@@ -1,17 +1,12 @@
-  .globl _strlen, allocString, reallocString
+  .globl _strlen, allocString, reallocString, _inputString
 
   .data
 
 START_BUF_LEN: .quad 3
+NEWLINE: .ascii "\n"
 
   .text
 
-# size_t _strlen(String s) {
-#   size_t i = 0;
-#   for (; s[i]; i++);
-#
-#   return i++;
-# }
 _strlen:
   mov %rdi, %rsi
   mov $-1, %rcx
@@ -46,4 +41,29 @@ reallocString:
   mov %rax, (%rbx)
   pop %rsi
   movq %rsi, 8(%rbx)
+  ret
+
+_inputString:
+  mov %rdi, %rbp
+  xor %r12, %r12
+  mov (NEWLINE), %bh
+
+  gc:
+  call getchar
+  movb %al, %bl
+  cmp %bl, %bh
+  jz done
+
+  cmp 8(%rbp), %r12
+  jbe writeByte
+  call reallocString
+  mov %rdi, %rbp
+
+  writeByte:
+  mov %bl, (%rbp, %r12)
+  inc %r12
+  jmp gc
+
+  done:
+  movb $0, (%rbp, %r12)
   ret
